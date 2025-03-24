@@ -2,12 +2,14 @@ package otter.sherry.ottergift.products;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import otter.sherry.ottergift.Users.UsersEntity;
 
 @Entity
 public class ProductEntity {
     @Id
     int productId;
-    int userId;
     int price;
     int category;
     int stockNumber;
@@ -19,5 +21,7 @@ public class ProductEntity {
     boolean deleted;
     boolean inStock;
     boolean available;
-
+    @ManyToOne
+    @JoinColumn(name = "userId")
+    UsersEntity user;
 }

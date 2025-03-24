@@ -2,6 +2,9 @@ package otter.sherry.ottergift.order;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import otter.sherry.ottergift.Users.UsersEntity;
 
 @Entity
 public class OrderEntity {
@@ -15,4 +18,7 @@ public class OrderEntity {
     boolean cardAPI;
     String deliveryCompany;
     String address;
+    @ManyToOne
+    @JoinColumn(name = "userId")
+    UsersEntity user;
 }
