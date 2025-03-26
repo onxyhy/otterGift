@@ -1,4 +1,6 @@
 package otter.sherry.ottergift.manager;
 
-public interface ManagerRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ManagerRepository extends JpaRepository<ManagerEntity, Long> {
 }

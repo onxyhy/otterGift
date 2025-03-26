@@ -4,13 +4,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import otter.sherry.ottergift.Users.UsersEntity;
+import otter.sherry.ottergift.user.UserEntity;
 
 @Entity
 public class OrderEntity {
     @Id
     int orderId;
-    int userId;
     int productId;
     int productCount;
     int deliveryId;
@@ -20,5 +19,5 @@ public class OrderEntity {
     String address;
     @ManyToOne
     @JoinColumn(name = "userId")
-    UsersEntity user;
+    UserEntity user;
 }

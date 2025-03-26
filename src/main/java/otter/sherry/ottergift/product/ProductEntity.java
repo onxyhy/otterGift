@@ -1,10 +1,10 @@
-package otter.sherry.ottergift.products;
+package otter.sherry.ottergift.product;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import otter.sherry.ottergift.Users.UsersEntity;
+import otter.sherry.ottergift.user.UserEntity;
 
 @Entity
 public class ProductEntity {
@@ -23,5 +23,5 @@ public class ProductEntity {
     boolean available;
     @ManyToOne
     @JoinColumn(name = "userId")
-    UsersEntity user;
+    UserEntity user;
 }
