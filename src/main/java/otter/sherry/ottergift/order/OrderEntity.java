@@ -1,10 +1,10 @@
 package otter.sherry.ottergift.order;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
+import otter.sherry.ottergift.product.ProductEntity;
 import otter.sherry.ottergift.user.UserEntity;
+
+import java.util.List;
 
 @Entity
 public class OrderEntity {
@@ -20,4 +20,6 @@ public class OrderEntity {
     @ManyToOne
     @JoinColumn(name = "userId")
     UserEntity user;
+    @OneToMany(mappedBy = "order")
+    List<ProductEntity> products;
 }

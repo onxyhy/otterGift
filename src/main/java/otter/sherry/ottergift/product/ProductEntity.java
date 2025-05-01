@@ -1,15 +1,21 @@
 package otter.sherry.ottergift.product;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
+import lombok.*;
+import otter.sherry.ottergift.order.OrderEntity;
 import otter.sherry.ottergift.user.UserEntity;
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@Setter
+@Getter
+
 public class ProductEntity {
     @Id
-    int productId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long productId;
     int price;
     int category;
     int stockNumber;
@@ -24,4 +30,7 @@ public class ProductEntity {
     @ManyToOne
     @JoinColumn(name = "userId")
     UserEntity user;
+    @ManyToOne
+    @JoinColumn(name = "orderId")
+    OrderEntity order;
 }

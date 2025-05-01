@@ -13,4 +13,10 @@ public class UserService {
 //        repository save which I dont know
         userRepository.save(userEntity);
     }
+    public UserEntity getUserById(int userId) {
+        return userRepository.findById(userId).get();
+    }
+    public UserEntity getUsersById() {
+       return userRepository.findAll().get(0);
+    }
 }

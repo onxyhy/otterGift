@@ -2,13 +2,19 @@ package otter.sherry.ottergift.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
-@Controller("/user")
+@RestController
+@RequestMapping("/user")
 public class UserController {
+
     @Autowired
     UserService userService;
+
+    @GetMapping("/{userId}")
+    public UserEntity myPageSearchMyinformation(@PathVariable int userId) {
+        return userService.getUserById(userId);
+    }
     @PostMapping("")
     public void userRegister(@RequestBody UserEntity userEntity){
         userService.userRegister(userEntity);
