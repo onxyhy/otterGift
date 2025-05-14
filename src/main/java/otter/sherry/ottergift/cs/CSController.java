@@ -1,23 +1,34 @@
 package otter.sherry.ottergift.cs;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.List;
+import java.util.Optional;
+
+@RestController
 @RequestMapping("/cs")
-public class CSController {
-    @Autowired
-    CSService csService;
+@RequiredArgsConstructor
 
-    @PostMapping("")
-    public void csRegister(@RequestBody CSEntity csEntity) {
-        csService.CSRegister(csEntity);
-   }
+public class CSController {
+    private final CSService csService;
+
+    @PostMapping("/{id}")
+    public void csRegister(@PathVariable("id") Long id,
+                           @RequestBody CSEntity csEntity) {
+        csService.CSRegister(id, csEntity);
+    }
+
     //문의 1개 조회
+    @GetMapping("/{id}")
+    public CSEntity getInquiryById(@PathVariable("id") Long serviceId) {
+        return csService.findById(serviceId)
+                .orElseThrow(() -> new IllegalArgumentException("Inquiry not found with id: " + serviceId));
+    }
 
     //문의 전부 조회
-
+    @GetMapping
+    public List<CSEntity> getAllInquiries() {
+        return csService.getAllInquiries();
+    }
 }

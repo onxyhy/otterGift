@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -12,7 +13,7 @@ public class UserController {
     UserService userService;
 
     @GetMapping("/{userId}")
-    public UserEntity myPageSearchMyinformation(@PathVariable int userId) {
+    public UserEntity myPageSearchMyinformation(@PathVariable long userId) {
         return userService.getUserById(userId);
     }
     @PostMapping("")
@@ -27,5 +28,5 @@ public class UserController {
     "id" : "onyx",
     "userNickName" : "슈슈",
     "userPassword" : "2222",
-    "userBirthday" : "2001.12.25"
+    "userBirthday" : "2001-12-25"
 }*/

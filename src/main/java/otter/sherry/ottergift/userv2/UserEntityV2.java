@@ -1,9 +1,8 @@
-package otter.sherry.ottergift.user;
+package otter.sherry.ottergift.userv2;
 
 import jakarta.persistence.*;
 import lombok.*;
 import otter.sherry.ottergift.order.OrderEntity;
-import otter.sherry.ottergift.cs.CSEntity;
 
 import java.util.Date;
 import java.util.List;
@@ -14,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class UserEntity {
+public class UserEntityV2 {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,8 +25,4 @@ public class UserEntity {
     private Date userBirthday;
     private Date userRegistrationDate;
     private Date userPurchaseDate;
-
-    // ✅ User와 Order의 관계 (1:N)
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<OrderEntity> orders;
 }
