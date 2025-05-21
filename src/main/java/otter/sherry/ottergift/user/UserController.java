@@ -1,5 +1,7 @@
 package otter.sherry.ottergift.user;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +15,10 @@ public class UserController {
     UserService userService;
 
     @GetMapping("/{userId}")
-    public UserEntity myPageSearchMyinformation(@PathVariable long userId) {
+    @Operation(summary = "회원조회",description = "유저 한 명을 조회합니다.")
+    public UserEntity myPageSearchMyinformation(
+            @Parameter(required = true, description = "유저 한 명을 조회합니다.")
+            @PathVariable("userId")long userId) {
         return userService.getUserById(userId);
     }
     @PostMapping("")

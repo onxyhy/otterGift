@@ -1,5 +1,7 @@
 package otter.sherry.ottergift.cs;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,12 +23,16 @@ public class CSController {
 
     //문의 1개 조회
     @GetMapping("/{id}")
-    public CSEntity getInquiryById(@PathVariable("id") Long serviceId) {
+    @Operation(summary = "문의조회",description = "문의 하나를 조회합니다.")
+    public CSEntity getInquiryById(
+            @Parameter(required = true, description = "문의 하나를 조회합니다.")
+            @PathVariable("id") Long serviceId) {
         return csService.findById(serviceId)
                 .orElseThrow(() -> new IllegalArgumentException("Inquiry not found with id: " + serviceId));
     }
 
     //문의 전부 조회
+    @Operation(summary = "문의 전체 조회",description = "문의 전체를 조회합니다.")
     @GetMapping
     public List<CSEntity> getAllInquiries() {
         return csService.getAllInquiries();
